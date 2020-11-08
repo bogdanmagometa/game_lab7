@@ -1,5 +1,6 @@
 import numbers_generator
 from cool_print import indent_print
+from cool_print import ASCII_UCU_LOGO
 import random
 import time
 
@@ -112,11 +113,6 @@ def print_after_loss(health):
         '"- не угу:( "\n\n',
         'Кількість спроб, що лишилися: '
     ]
-
-    indent_print('*Пан Фединяк\n\n', 5, 0.1)
-    time.sleep(2)
-    indent_print('"- не угу:( "', 5, 0.07, '*Пан Фединяк\n\n')
-    time.sleep(2)
 
     indent_print(lines[0], 6, 0.1)
     time.sleep(1.5)
