@@ -1,3 +1,9 @@
+"""
+main.py
+
+To play the game run this file.
+"""
+
 import random
 import time
 
@@ -96,7 +102,7 @@ def check_answer() -> bool:
     try:
         user_guess = int(input())
     except ValueError:
-        print("You should enter an integer!")
+        pass
 
     if cur_task_num == 0:
         # check if user's number is lucky
