@@ -195,12 +195,12 @@ while exams_left > 0 and health > 0:
 
 # print whether user won or failed
 if exams_left == 0:
-    indent_print('W I N !!!', 5, 0.1)
+    indent_print('W I N !!!', 6, 0.1)
     time.sleep(1)
-    indent_print('Я можу перейти на другий семестр! gg', 5, 0.07, 'W I N !!!')
+    indent_print('Я можу перейти на другий семестр! gg', 6, 0.07, 'W I N !!!\n\n')
 else:
-    indent_print('G A M E   O V E R', 5, 0.1)
+    indent_print('G A M E   O V E R', 6, 0.1)
     time.sleep(1)
-    indent_print('PRESS "F" TO PAY RESPECT', 5, 0.07, 'G A M E   O V E R')
+    indent_print('PRESS "F" TO PAY RESPECT', 6, 0.07, 'G A M E   O V E R\n\n')
 
 time.sleep(10)
