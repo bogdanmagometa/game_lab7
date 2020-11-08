@@ -168,6 +168,17 @@ def check_answer() -> bool:
     return False
 
 
+def end_game(exams_left):
+    if exams_left == 0:
+        indent_print('W I N !!!', 6, 0.1)
+        time.sleep(1)
+        indent_print('Я можу перейти на другий семестр! gg', 6, 0.07, 'W I N !!!\n\n')
+    else:
+        indent_print('G A M E   O V E R', 6, 0.1)
+        time.sleep(1)
+        indent_print('PRESS "F" TO PAY RESPECT', 6, 0.07, 'G A M E   O V E R\n\n')
+
+
 lucky_nums = numbers_generator.gen_lucky(30)
 ulam_nums = numbers_generator.gen_ulam(30)
 even_nums = numbers_generator.gen_even(30)
@@ -181,7 +192,7 @@ TASKS = [(0, "lucky"), (1, "Ulam"), (2, "even")]
 intro()
 
 exams_left = 10
-health = 3
+health = 3 # represents how many possible retakes of exames are left
 # game loop
 while exams_left > 0 and health > 0:
     won = check_answer()
@@ -193,14 +204,6 @@ while exams_left > 0 and health > 0:
         health -= 1
         print_after_loss(health)
 
-# print whether user won or failed
-if exams_left == 0:
-    indent_print('W I N !!!', 6, 0.1)
-    time.sleep(1)
-    indent_print('Я можу перейти на другий семестр! gg', 6, 0.07, 'W I N !!!\n\n')
-else:
-    indent_print('G A M E   O V E R', 6, 0.1)
-    time.sleep(1)
-    indent_print('PRESS "F" TO PAY RESPECT', 6, 0.07, 'G A M E   O V E R\n\n')
-
+# print whether user won or failed the game
+end_game(exams_left)
 time.sleep(10)
