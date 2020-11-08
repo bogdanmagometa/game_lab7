@@ -182,7 +182,7 @@ NUM_NUMBERS = FIELD_HEIGHT * FIELD_WIDTH
 
 TASKS = [(0, "lucky"), (1, "Ulam"), (2, "even")]
 
-#intro()
+intro()
 
 exams_left = 10
 health = 3
