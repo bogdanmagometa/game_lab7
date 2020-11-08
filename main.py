@@ -131,7 +131,6 @@ even_nums = numbers_generator.gen_even(30)
 
 FIELD_HEIGHT = 4
 FIELD_WIDTH = 9
-NUM_NUMBERS = FIELD_HEIGHT * FIELD_WIDTH
 
 TASKS = [(0, "lucky"), (1, "Ulam"), (2, "even")]
 
