@@ -1,73 +1,125 @@
-#! /usr/bin/python
+"""
+numbers_generator.py
 
-def numbers_Ulam(number):
-    '''
-    Function returns list of Ulam numbers
-    >>> numbers_Ulam(15)
-    [1, 2, 3, 4, 6, 8, 11, 13, 16, 18, 26, 28, 36, 38, 47]
-    >>> numbers_Ulam(5)
-    [1, 2, 3, 4, 6]
-    '''
-    ulam = [1, 2]
-    sums = []
-    c_attempts = 0
+This module is used for generating lists of numbers such as Ulam numbers, lucky
+numbers and even numbers.
 
-    while c_attempts < number:
+It consists of 3 function:
 
-        x = 0
-        a = 0
-        counter = 0
-        for a in range(len(ulam)):
-            counter = len(ulam) - 1
-            for i in range(x, counter):
-                summ = ulam[a] + ulam[i + 1]
-                sums.append(summ)
-                sums.sort()
-            x += 1
-        for s in sums:
-            if s > max(ulam) and sums.count(s) == 1:
-                ulam.append(s)
-                sums = []
-                break
-        c_attempts += 1
-    ulam = ulam[:-2]
+"""
 
-    return ulam
+from typing import List
 
-def even_numbers(number):
-    '''
-    Function returns list of even numbers
-    >>>  even_numbers(10)
-    [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
-    >>> even_numbers(0)
-    []
-    '''
-    even = []
 
-    for elem in range(1, number + 1):
-        even.append(elem * 2)
-
-    return even
-
-def sieve_flavius(n):
+def gen_ulam(n: int) -> List[int]:
     """
-    Function returns list of sieve numbers
-    >>> sieve_flavius(10)
+    Precondition: n > 0
+
+    Returns sequence of n Ulam numbers.
+
+    >>> gen_ulam(10)
+    [1, 2, 3, 4, 6, 8, 11, 13, 16, 18]
+    >>> gen_ulam(54) # doctest: +NORMALIZE_WHITESPACE
+    [1, 2, 3, 4, 6, 8, 11, 13, 16, 18, 26, 28, 36, 38, 47, 48, 53, 57, 62, 69,
+    72, 77, 82, 87, 97, 99, 102, 106, 114, 126, 131, 138, 145, 148, 155, 175,
+    177, 180, 182, 189, 197, 206, 209, 219, 221, 236, 238, 241, 243, 253, 258,
+    260, 273, 282]
+    >>> gen_ulam(2)
+    [1, 2]
+    >>> gen_ulam(1)
+    [1]
+    >>> gen_ulam(3)
+    [1, 2, 3]
+    """
+
+    if n == 1:
+        return [1]
+    if n == 2:
+        return [1, 2]
+
+    sequence = [1, 2]
+
+    # find another n-2 Ulam numbers
+    for _ in range(n - 2):
+        candidates_for_ulam = []
+        repeating_numbers = []
+
+        # go through all the combinations of two numbers (num1 and num2) from sequence
+        for index_num1, num1 in enumerate(sequence):
+            for num2 in sequence[index_num1+1:]:
+
+                candidate = num1 + num2
+
+                if candidate > sequence[-1]:
+                    if candidate in candidates_for_ulam:
+                        candidates_for_ulam.remove(candidate)
+                        repeating_numbers.append(candidate)
+                    elif candidate not in repeating_numbers:
+                        candidates_for_ulam.append(candidate)
+
+        sequence.append(min(candidates_for_ulam))
+
+    return sequence
+
+
+def gen_lucky(n: int) -> List[int]: ## need to rewrite but works fine
+    """
+    Precondition: 0 <= n <= 1200
+
+    Generates and returns list of n lucky numbers.
+
+    >>> gen_lucky(100) # doctest: +ELLIPSIS
+    [1, 3, 7, 9, 13, 15, 21, 25, 31, 33, ... 75, 79, 87, 93, 99, ...]
+    >>> gen_lucky(4)
     [1, 3, 7, 9]
-    >>> sieve_flavius(15)
-    [1, 3, 7, 9, 13]
-    >>> sieve_flavius(100)
-    [1, 3, 7, 9, 13, 15, 21, 25, 31, 33, 37, 43, 49, 51, 63, 67, 69, 73, 75, 79, 87, 93, 99]
+    >>> gen_lucky(0)
+    []
+    >>> gen_lucky(1)
+    [1]
+    >>> gen_lucky(2)
+    [1, 3]
+    >>> gen_lucky(3)
+    [1, 3, 7]
+    >>> gen_lucky(1200) # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE
+    [1, 3, 7, 9, 13, 15, 21, 25, 31, 33, 37, 43, 49, 51, 63, 67, ..., 9999, ...]
+    >>> gen_lucky(3)
+    [1, 3, 7]
     """
-    odd_nums = []
-    for i in range(n):
-        if i % 2 == 1:
-            odd_nums.append(i)
-    #a list for odd numbers to work with
-    del odd_nums[2::3]
-    for j in range(3, len(odd_nums) ):
-        try:
-            del odd_nums[(odd_nums[j - 1] - 1)::odd_nums[j - 1]]
-        except:
-            break
-    return odd_nums
+
+    natur_list = list(range(1, 11_000))
+
+    cur_num = 2
+    i = n
+    while i > 0:
+        if cur_num in natur_list:
+            del natur_list[cur_num-1::cur_num]
+            i -= 1
+        cur_num += 1
+
+    return natur_list[:n]
+
+
+def gen_even(n: int) -> List[int]:
+    """
+    Precondition: n > 0
+
+    Returns list containing n even numbers starting from 2
+
+    >>> gen_even(1)
+    [2]
+    >>> gen_even(2)
+    [2, 4]
+    >>> gen_even(3)
+    [2, 4, 6]
+    >>> gen_even(4)
+    [2, 4, 6, 8]
+    >>> gen_even(10_000) # doctest: +ELLIPSIS
+    [2, 4, 6, 8, 10, ..., 9998, 10000, 10002, ..., 19996, 19998, 20000]
+    """
+
+    return list(range(2, 2*n+1, 2))
+
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
