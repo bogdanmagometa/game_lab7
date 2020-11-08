@@ -1,7 +1,7 @@
-import numbers_generator
 import random
 import time
 
+import numbers_generator
 from field_generator import gen_field, gen_grid
 from cool_print import indent_print
 
