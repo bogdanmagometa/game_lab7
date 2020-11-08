@@ -5,7 +5,9 @@ This module is used for generating lists of numbers such as Ulam numbers, lucky
 numbers and even numbers.
 
 It consists of 3 function:
-
+gen_ulam(n)
+gen_lucky(n)
+gen_even(n)
 """
 
 from typing import List
