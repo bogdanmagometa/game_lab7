@@ -3,39 +3,12 @@ This module contains function and some stuff related to printing text to
 terminal in a nice way.
 
 Contents:
-1) ASCII_UCU_LOGO - string with UCU logo
-2) indent_print(text, indent, time_per_letter, prior_text) - function that can
+1) indent_print(text, indent, time_per_letter, prior_text) - function that can
 print text letter by letter and with indent.
 """
 
 import time
 
-
-ASCII_UCU_LOGO = """                                   ..                                 
-                                 .......                              
-                        ....       ..       ....                      
-                   ..        ..           .        ..                 
-               ...      ..   .    ....    .   ..      ...             
-       ..                         ....                         ..     
-       .. ..                      ....          .            . ..     
-       .. ..      .....           ....     ...     ..        . ..     
-       .. ..        .....         ....   ..       ..         . ..     
-       .. ..         .....        .... ..                    . ..     
-       .. ..          .....       ......                     . ..     
-       .. ..            .....     .........            ...   . ..     
-       .. ..             .....   .....  .....         ...    . ..     
-       .. ..               ...........   .....       ..      . ..     
-       .. ..                 ...  ....    .....    ...       . ..     
-       .. ..               ...    ....      ........         . ..     
-       .. ..             ...      ....         ...           . ..     
-       .. ..            ..        ....       ...             . ..     
-       .. ..         ...          ....     ...               . ..     
-       .. ..      ..              ...    ...                 . ..     
-       .. ..                   ..      ...                   . ..     
-       .. ..                   ..    ...                     . ..     
-          ..   ............                  ............    .        
-                               ..      ..                             
-                                   ..                                """
 
 def indent_print(text: str, indent: int, time_per_letter: float,
                                                         prior_text="") -> None:

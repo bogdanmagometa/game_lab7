@@ -5,15 +5,15 @@ This module is used for generating lists of numbers such as Ulam numbers, lucky
 numbers and even numbers.
 
 It consists of 3 function:
-gen_ulam(n)
-gen_lucky(n)
-gen_even(n)
+gen_ulam(length)
+gen_lucky(length)
+gen_even(length)
 """
 
 from typing import List
 
 
-def gen_ulam(n: int) -> List[int]:
+def gen_ulam(length: int) -> List[int]:
     """
     Precondition: n > 0
 
@@ -34,15 +34,15 @@ def gen_ulam(n: int) -> List[int]:
     [1, 2, 3]
     """
 
-    if n == 1:
+    if length == 1:
         return [1]
-    if n == 2:
+    if length == 2:
         return [1, 2]
 
     sequence = [1, 2]
 
     # find another n-2 Ulam numbers
-    for _ in range(n - 2):
+    for _ in range(length - 2):
         candidates_for_ulam = []
         repeating_numbers = []
 
@@ -64,7 +64,7 @@ def gen_ulam(n: int) -> List[int]:
     return sequence
 
 
-def gen_lucky(n: int) -> List[int]: ## need to rewrite but works fine
+def gen_lucky(length: int) -> List[int]: ## need to rewrite but works fine
     """
     Precondition: 0 <= n <= 1200
 
@@ -91,17 +91,17 @@ def gen_lucky(n: int) -> List[int]: ## need to rewrite but works fine
     natur_list = list(range(1, 11_000))
 
     cur_num = 2
-    i = n
+    i = length
     while i > 0:
         if cur_num in natur_list:
             del natur_list[cur_num-1::cur_num]
             i -= 1
         cur_num += 1
 
-    return natur_list[:n]
+    return natur_list[:length]
 
 
-def gen_even(n: int) -> List[int]:
+def gen_even(length: int) -> List[int]:
     """
     Precondition: n > 0
 
@@ -119,7 +119,7 @@ def gen_even(n: int) -> List[int]:
     [2, 4, 6, 8, 10, ..., 9998, 10000, 10002, ..., 19996, 19998, 20000]
     """
 
-    return list(range(2, 2*n+1, 2))
+    return list(range(2, 2*length + 1, 2))
 
 
 if __name__ == "__main__":

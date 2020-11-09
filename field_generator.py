@@ -4,15 +4,17 @@ field_generator.py
 This module works with field of numbers in our game.
 It contains functions for generating field as a list
 of integers and generating grid as a string for
-displaying numbers
+displaying numbers.
 """
 
 import random
 
 
-def gen_field(ulam_numbers: list, lucky_numbers: list, even_numbers: list, height: int, length: int)-> list:
+def gen_field(ulam_numbers: list, lucky_numbers: list, even_numbers: list, height: int,
+                                                                            length: int) -> list:
     """
-    This function takes three lists of Ulam, lucky and even numbers and returns a game field as a list
+    This function takes three lists of Ulam, lucky and even numbers and returns
+    a game field as a list
 
     Precondition: height > 0 and length > 0
     Precondition: (height * length) % 3 == 0
@@ -61,5 +63,5 @@ def gen_grid(field: list, height: int, width: int) -> str:
         grid += '|\n'
 
         grid += '\u2015'*(width*(space_per_element+1)+1) + '\n'
-    
+
     return grid

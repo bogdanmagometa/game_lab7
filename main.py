@@ -19,10 +19,13 @@ def intro():
 
     lines = ['*8 ранку, дзвонить будильник:\n\n',
             '"- dInG dOnG"',
-            '*Я прокидаюся і розумію, що маю 10 іспитів із математичного аналізу. \nДо жодного з них я не готовий повністю... \n',
+            '*Я прокидаюся і розумію, що маю 10 іспитів із математичного аналізу. \nДо жодного з \
+них я не готовий повністю... \n',
             'Закрити перший семестр мені допоможе тільки удача...\n',
-            '*Підходячи до кабінету пана Степана, я зустрічаю одногрупника Богдана. Він уже все склав!!!',
-            '*Він поділився секретом успіху: якщо я витягну білет за номером [even\\ulam\\lucky], мені попадеться найлегше завдання. Шанси успішно закрити сесію ще є!'
+            '*Підходячи до кабінету пана Степана, я зустрічаю одногрупника Богдана. Він уже все \
+склав!!!',
+            '*Він поділився секретом успіху: якщо я витягну білет за номером [even\\ulam\\lucky], \
+мені попадеться найлегше завдання. Шанси успішно закрити сесію ще є!'
             ]
 
     indent_print(lines[0], 5, 0.08)
@@ -36,7 +39,7 @@ def intro():
     time.sleep(2)
 
 
-def print_after_win(exams_left):
+def print_after_win(num_exams_left):
     """This function is used to print Fedynyak's words
     and gives info about how many exams are left to pass
     """
@@ -51,7 +54,7 @@ def print_after_win(exams_left):
     time.sleep(1.5)
     indent_print(lines[1], 6, 0.07, lines[0])
     time.sleep(1.5)
-    indent_print(lines[2] + str(exams_left), 6, 0.07, lines[0] + lines[1])
+    indent_print(lines[2] + str(num_exams_left), 6, 0.07, lines[0] + lines[1])
     time.sleep(2)
 
 
@@ -94,7 +97,9 @@ def check_answer() -> bool:
     cur_task_num, cur_task_text = random.choice(TASKS)
 
     # print character's lines
-    for char in '"Чорт, а їх багато."\n\r\r\r\r"Потрібно витягнути саме за номером ' + cur_task_text + '": ':
+    for char in ('"Чорт, а їх багато."\n\r\r\r\r'
+                + '"Потрібно витягнути саме за номером '
+                + cur_task_text + '": '):
         print(char, end="", flush=True)
         time.sleep(0.09)
 
@@ -120,8 +125,12 @@ def check_answer() -> bool:
     return False
 
 
-def end_game(exams_left):
-    if exams_left == 0:
+def end_game(num_exams_left):
+    """
+    Prints whether user won or failed based on whether he passed all the exams.
+    """
+
+    if num_exams_left == 0:
         indent_print('W I N !!!', 6, 0.1)
         time.sleep(1)
         indent_print('Я можу перейти на другий семестр! gg', 6, 0.07, 'W I N !!!\n\n')
