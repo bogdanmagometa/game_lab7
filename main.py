@@ -39,44 +39,6 @@ def intro():
     time.sleep(2)
 
 
-def print_after_win(num_exams_left):
-    """This function is used to print Fedynyak's words
-    and gives info about how many exams are left to pass
-    """
-
-    lines = [
-        '*Пан Фединяк\n\n',
-        '"- угу:)"\n\n',
-        'Кількість іспитів, які ще потрібно скласти: '
-    ]
-
-    indent_print(lines[0], 6, 0.1)
-    time.sleep(1.5)
-    indent_print(lines[1], 6, 0.07, lines[0])
-    time.sleep(1.5)
-    indent_print(lines[2] + str(num_exams_left), 6, 0.07, lines[0] + lines[1])
-    time.sleep(2)
-
-
-def print_after_loss(health):
-    """This function is used to print Fedynyak's words
-    and gives info about how many trials are left
-    """
-
-    lines = [
-        '*Пан Фединяк\n\n',
-        '"- не угу:( "\n\n',
-        'Кількість спроб, що лишилися: '
-    ]
-
-    indent_print(lines[0], 6, 0.1)
-    time.sleep(1.5)
-    indent_print(lines[1], 6, 0.07, lines[0])
-    time.sleep(1.5)
-    indent_print(lines[2] + str(health), 6, 0.07, lines[0] + lines[1])
-    time.sleep(2)
-
-
 def check_answer() -> bool:
     """
     Checks if the user's guess is correct. Returns True if it is.
@@ -123,6 +85,44 @@ def check_answer() -> bool:
             return True
 
     return False
+
+
+def print_after_win(num_exams_left):
+    """This function is used to print Fedynyak's words
+    and gives info about how many exams are left to pass
+    """
+
+    lines = [
+        '*Пан Фединяк\n\n',
+        '"- угу:)"\n\n',
+        'Кількість іспитів, які ще потрібно скласти: '
+    ]
+
+    indent_print(lines[0], 6, 0.1)
+    time.sleep(1.5)
+    indent_print(lines[1], 6, 0.07, lines[0])
+    time.sleep(1.5)
+    indent_print(lines[2] + str(num_exams_left), 6, 0.07, lines[0] + lines[1])
+    time.sleep(2)
+
+
+def print_after_loss(health):
+    """This function is used to print Fedynyak's words
+    and gives info about how many trials are left
+    """
+
+    lines = [
+        '*Пан Фединяк\n\n',
+        '"- не угу:( "\n\n',
+        'Кількість спроб, що лишилися: '
+    ]
+
+    indent_print(lines[0], 6, 0.1)
+    time.sleep(1.5)
+    indent_print(lines[1], 6, 0.07, lines[0])
+    time.sleep(1.5)
+    indent_print(lines[2] + str(health), 6, 0.07, lines[0] + lines[1])
+    time.sleep(2)
 
 
 def end_game(num_exams_left):
